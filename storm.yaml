@@ -1,0 +1,29 @@
+
+storm.zookeeper.servers:
+    - "zookeeper.aws.instanceone.com"
+
+nimbus.seeds: ["nimbus.aws.instanceone.com"]
+# netty transport
+storm.messaging.transport: "backtype.storm.messaging.netty.Context"
+# storm.messaging.netty.buffer_size: 16384
+# storm.messaging.netty.max_retries: 10
+# storm.messaging.netty.min_wait_ms: 1000
+# storm.messaging.netty.max_wait_ms: 5000
+
+drpc.servers:
+  - "nimbus.aws.instanceone.com"
+
+storm.log.dir: "/var/log/storm"
+storm.local.hostname: ${host}
+
+worker.heap.memory.mb: 2048
+
+worker.gc.childopts: "-XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:NewSize=128m -XX:CMSInitiatingOccupancyFraction=70 -XX:-CMSConcurrentMTEnabled -Djava.net.preferIPv4Stack=true"
+
+# -Xmx2048m -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:NewSize=128m -XX:CMSInitiatingOccupancyFraction=70 -XX:-CMSConcurrentMTEnabled -Djava.net.preferIPv4Stack=true
+
+# "-Xmx%HEAP-MEM%m -XX:+PrintGCDetails -Xloggc:artifacts/gc.log -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=1M -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=artifacts/heapdump"
+
+supervisor.childopts: "-Xmx256m -Djava.net.preferIPv4Stack=true"
+ui.childopts: "-Xmx768m  -Djava.net.preferIPv4Stack=true"
+logviewer.childopts: "-Xmx128m -Djava.net.preferIPv4Stack=true"
